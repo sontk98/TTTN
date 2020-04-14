@@ -20,3 +20,16 @@ D:\HK II 2019-2020\Thực Tập Tốt Nghiệp\Project\Get Comment\Get Comment\o
 D:\HK II 2019-2020\Thực Tập Tốt Nghiệp\Project\Get Comment\Get Comment\obj\Debug\Get Comment.csproj.CopyComplete
 D:\HK II 2019-2020\Thực Tập Tốt Nghiệp\Project\Get Comment\Get Comment\obj\Debug\Get Comment.exe
 D:\HK II 2019-2020\Thực Tập Tốt Nghiệp\Project\Get Comment\Get Comment\obj\Debug\Get Comment.pdb
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\bin\Debug\Get Comment.exe.config
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\bin\Debug\Get Comment.exe
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\bin\Debug\Get Comment.pdb
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.csprojAssemblyReference.cache
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get_Comment.Form1.resources
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get_Comment.Properties.Resources.resources
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.csproj.GenerateResource.cache
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.csproj.CoreCompileInputs.cache
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.csproj.CopyComplete
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.exe
+C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.pdb

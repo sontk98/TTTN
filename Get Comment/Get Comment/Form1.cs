@@ -20,46 +20,78 @@ namespace Get_Comment
         {
             InitializeComponent();
         }
-
+        List<comments> dataClear = null;
         private void button1_Click(object sender, EventArgs e)
         {
-            var webClient = new WebClient();
-            string link = "https://graph.facebook.com/"+textBox1.Text+"_"+textBox2.Text+"?fields=comments.limit(10000)&access_token="+textBox3.Text;
-            var json = webClient.DownloadString(@link);
+
+            //var webClient = new WebClient();
+            string link = "https://graph.facebook.com/" + textBox1.Text + "_" + textBox2.Text + "?fields=comments.limit(10000)&access_token=" + textBox3.Text;
+
+            string json="";
+
+            //try
+            //{
+            //    json = webClient.DownloadString(@link);
+            //}
+            //catch (Exception)
+            //{
+            //    string message = "không truy cập được bài viết , xin xem lại id và token";
+            //    string caption = "error";
+            //    MessageBoxButtons buttons = MessageBoxButtons.OK;
+            //    DialogResult result;
+            //    result = MessageBox.Show(message, caption, buttons);
+            //    if (result == System.Windows.Forms.DialogResult.OK)
+            //    {
+            //        // Closes the parent form.
+
+            //        return;
+            //    }
+            //}
+
+            var resultRequest = new HttpRequest().getCommentFaceBook(link, ref json);
+
+            if (resultRequest == false) return;
             dynamic dataSet = JsonConvert.DeserializeObject<dynamic>(json);
             dynamic array = dataSet.comments.data;
+
+            dataClear = new List<comments>();
+            int i = 1;
             foreach (var item in array)
             {
-                string time = item.created_time;
-                string id = item.id;
-                string comment = item.message;
+                var tempCommentData = new comments();
+                tempCommentData.time = item.created_time;
+                tempCommentData.id = item.id;
+                tempCommentData.comment = item.message;
 
-                string binhluan = Regex.Replace(comment, "\n", " ");
+                string binhluan = Regex.Replace(tempCommentData.comment, "\n", " ");
 
-                var result1 = new XuLyData().xulySDT(binhluan);
-                var result2 = new XuLyData().xulySL(binhluan);
-                var result3 = new XuLyData().xulyMaHang(binhluan);
-                var result4 = new XuLyData().xulyEmail(binhluan);
+                var resultSDT = new XuLyData().xulySDT(binhluan);
+                var resultSL = new XuLyData().xulySL(binhluan);
+                var resultMH = new XuLyData().xulyMaHang(binhluan);
+                var resultEmail = new XuLyData().xulyEmail(binhluan);
                 //Console.WriteLine(result.ToString());
-                if (result1.Success||result2.Success||result3.Success||result4.Success)
+                if (resultSDT.Success || resultSL.Success || resultMH.Success || resultEmail.Success)
                 //if(0==0)
                 {
 
 
-                    string mh = result3.ToString();
-                    string sl = result2.ToString();
-                    string email = result4.ToString();
-                    string sdt = result1.ToString();
+                    tempCommentData.MH = resultMH.ToString();
+                    tempCommentData.SL = resultSL.ToString();
+                    tempCommentData.email = resultEmail.ToString();
+                    tempCommentData.sdt = resultSDT.ToString();
 
                     ListViewItem item1 = new ListViewItem();
-                    item1.Text = time;
-                    item1.SubItems.Add(id);
-                    item1.SubItems.Add(binhluan);
-                    item1.SubItems.Add(mh);
-                    item1.SubItems.Add(sl);
-                    item1.SubItems.Add(email);
-                    item1.SubItems.Add(sdt);
+                    item1.Text = i.ToString();
+                    i++;
+                    item1.SubItems.Add(tempCommentData.time);
+                    item1.SubItems.Add(tempCommentData.id);
+                    item1.SubItems.Add(tempCommentData.comment);
+                    item1.SubItems.Add(tempCommentData.MH);
+                    item1.SubItems.Add(tempCommentData.SL);
+                    item1.SubItems.Add(tempCommentData.email);
+                    item1.SubItems.Add(tempCommentData.sdt);
                     listView1.Items.Add(item1);
+                    dataClear.Add(tempCommentData);
                 }
             }
         }
@@ -68,7 +100,7 @@ namespace Get_Comment
         {
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = "(*.csv)|*.csv";
-            if(save.ShowDialog() == DialogResult.OK)
+            if (save.ShowDialog() == DialogResult.OK)
             {
                 string path = save.FileName;
                 //File.AppendAllText(path,"Time"+","+"ID User"+","+"Comment" + "," + "Mã Hàng" + "," + "Số Lượng" + "," + "Email" + "," + "Số điện thoại" + Environment.NewLine);
@@ -89,16 +121,17 @@ namespace Get_Comment
                 StreamWriter outputFile = new StreamWriter(path, false, new UTF8Encoding(true));
                 outputFile.WriteLine("Time" + "," + "ID User" + "," + "Comment" + "," + "Mã Hàng" + "," + "Số Lượng" + "," + "Email" + "," + "Số điện thoại");
 
-                for (int i = 0; i < listView1.Items.Count; i++)
+                for (int i = 0; i < dataClear.Count; i++)
                 {
 
-                    outputFile.WriteLine(listView1.Items[i].SubItems[0].Text
-                        + "," + listView1.Items[i].SubItems[1].Text
-                        + "," + listView1.Items[i].SubItems[2].Text
-                        + "," + listView1.Items[i].SubItems[3].Text
-                        + "," + listView1.Items[i].SubItems[4].Text
-                        + "," + listView1.Items[i].SubItems[5].Text
-                        + "," + listView1.Items[i].SubItems[6].Text);
+                    outputFile.WriteLine(dataClear[i].time
+                        + "," + dataClear[i].id
+                        + "," + dataClear[i].comment
+                        + "," + dataClear[i].MH
+                        + "," + dataClear[i].SL
+                        + "," + dataClear[i].email
+                        + "," + dataClear[i].sdt);
+
 
 
                 }

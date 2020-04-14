@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // button1
@@ -62,6 +62,7 @@
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
+            this.Time,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
@@ -71,15 +72,15 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 78);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(776, 329);
+            this.listView1.Size = new System.Drawing.Size(788, 329);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Time";
-            this.columnHeader1.Width = 99;
+            this.columnHeader1.Text = "STT";
+            this.columnHeader1.Width = 49;
             // 
             // columnHeader2
             // 
@@ -94,18 +95,22 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Mã Hàng";
+            this.columnHeader4.Width = 77;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Số Lượng";
+            this.columnHeader5.Width = 68;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Email";
+            this.columnHeader6.Width = 105;
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "SĐT";
+            this.columnHeader7.Width = 150;
             // 
             // button2
             // 
@@ -123,7 +128,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(225, 20);
             this.textBox1.TabIndex = 5;
-            this.textBox1.Text = "102221681445543";
+            this.textBox1.Text = "110578097253304";
             // 
             // textBox2
             // 
@@ -131,7 +136,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(250, 20);
             this.textBox2.TabIndex = 6;
-            this.textBox2.Text = "110785033922541";
+            this.textBox2.Text = "110578517253262";
             // 
             // textBox3
             // 
@@ -139,7 +144,9 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(537, 20);
             this.textBox3.TabIndex = 7;
-            this.textBox3.Text = resources.GetString("textBox3.Text");
+            this.textBox3.Text = "EAAP3Ojm4zAQBAIYiyZCRRPqeYjzxxWgAqAnlVhashEZBzx4q8SGsgKBgmx0p37qD9p5MAC3IT2XVaEEY" +
+    "Lok2m6k5atlPy7AeRIiZAP7GOWQp9W8S5pbq1VkZAxV0f6ZA88ypM84yuWEuhUIqmYYZAsxaCrDhLynN" +
+    "ddwZBxYyZANZCmrr5f8PxawWppgKWTsZAQnyIZD";
             // 
             // label1
             // 
@@ -171,11 +178,16 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Access Token";
             // 
+            // Time
+            // 
+            this.Time.Text = "Time";
+            this.Time.Width = 127;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(812, 450);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -209,6 +221,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ColumnHeader Time;
     }
 }
 
