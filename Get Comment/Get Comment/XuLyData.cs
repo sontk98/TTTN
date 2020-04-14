@@ -11,11 +11,11 @@ namespace Get_Comment
     {
         //tim  tat ca so co 11 toi 13 chu so ma dung truoc va dang sau no la khoang trong 
 
-        Regex regSdt = new Regex(@"[0-9]{10,11}");
+        Regex regSdt = new Regex(@"\b[0-9]{10,11}\b");
 
         //tim tat ca so co 1 toi 3 chu so ma dung truoc va dang sau la khoang trong
 
-        Regex regSl = new Regex(@"\D[0-9]{1,2}\D");
+        Regex regSl = new Regex(@"\b[0-9]{1,2}\b");
 
         Regex regEmail = new Regex(@"[a-z0-9._@+-]+@([a-z0-9]+\.)+[a-z]{2,6}");
 
