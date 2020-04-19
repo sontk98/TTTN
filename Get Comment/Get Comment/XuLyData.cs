@@ -9,11 +9,11 @@ namespace Get_Comment
 {
     class XuLyData
     {
-        //tim  tat ca so co 11 toi 13 chu so ma dung truoc va dang sau no la khoang trong 
+        //tim  tat ca so co 10 toi 11 chu so ma dung truoc va dang sau no la khoang trong 
 
         Regex regSdt = new Regex(@"\b[0-9]{10,11}\b");
 
-        //tim tat ca so co 1 toi 3 chu so ma dung truoc va dang sau la khoang trong
+        //tim tat ca so co 1 toi 2 chu so ma dung truoc va dang sau la khoang trong
 
         Regex regSl = new Regex(@"\b[0-9]{1,2}\b");
 
@@ -56,5 +56,12 @@ namespace Get_Comment
             return result;
 
         }
+
+        public Match XuLyMaHangNangCap(string chuoi, string mahang)
+        {
+            Regex regXuLy = new Regex(@mahang);
+            Match result = regXuLy.Match(" "+chuoi+" ");
+            return result;
+        } 
     }
 }

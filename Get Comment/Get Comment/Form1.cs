@@ -29,24 +29,7 @@ namespace Get_Comment
 
             string json="";
 
-            //try
-            //{
-            //    json = webClient.DownloadString(@link);
-            //}
-            //catch (Exception)
-            //{
-            //    string message = "không truy cập được bài viết , xin xem lại id và token";
-            //    string caption = "error";
-            //    MessageBoxButtons buttons = MessageBoxButtons.OK;
-            //    DialogResult result;
-            //    result = MessageBox.Show(message, caption, buttons);
-            //    if (result == System.Windows.Forms.DialogResult.OK)
-            //    {
-            //        // Closes the parent form.
-
-            //        return;
-            //    }
-            //}
+          
 
             var resultRequest = new HttpRequest().getCommentFaceBook(link, ref json);
 
@@ -68,14 +51,26 @@ namespace Get_Comment
                 var resultSDT = new XuLyData().xulySDT(binhluan);
                 var resultSL = new XuLyData().xulySL(binhluan);
                 var resultMH = new XuLyData().xulyMaHang(binhluan);
+                //lấy mã hàng vào khách hàng nhập
+                //var resultMH = new XuLyData().XuLyMaHangNangCap(tempCommentData.comment, "mh017");
+
                 var resultEmail = new XuLyData().xulyEmail(binhluan);
+
+
                 //Console.WriteLine(result.ToString());
-                if (resultSDT.Success || resultSL.Success || resultMH.Success || resultEmail.Success)
+                if (resultSDT.Success || resultSL.Success || resultMH.Success  || resultEmail.Success)
                 //if(0==0)
                 {
 
+                    // lấy nhiều mã hàng
+                    //do
+                    //{
+                    //    tempCommentData.MH =tempComentData.MH + resultMH.ToString() + " ";
+                    //    resultMH = resultMH.NextMatch();
+                    //}
+                    //while (resultMH != Match.Empty);
 
-                    tempCommentData.MH = resultMH.ToString();
+
                     tempCommentData.SL = resultSL.ToString();
                     tempCommentData.email = resultEmail.ToString();
                     tempCommentData.sdt = resultSDT.ToString();
@@ -103,19 +98,7 @@ namespace Get_Comment
             if (save.ShowDialog() == DialogResult.OK)
             {
                 string path = save.FileName;
-                //File.AppendAllText(path,"Time"+","+"ID User"+","+"Comment" + "," + "Mã Hàng" + "," + "Số Lượng" + "," + "Email" + "," + "Số điện thoại" + Environment.NewLine);
-                //for (int i =0;i<listView1.Items.Count;i++)
-                //{
-                //    File.AppendAllText(path, listView1.Items[i].SubItems[0].Text
-                //        +","+ listView1.Items[i].SubItems[1].Text
-                //        +","+ listView1.Items[i].SubItems[2].Text
-                //        +","+ listView1.Items[i].SubItems[3].Text
-                //        +","+ listView1.Items[i].SubItems[4].Text
-                //        +","+ listView1.Items[i].SubItems[5].Text
-                //        +","+ listView1.Items[i].SubItems[6].Text
-                //        + Environment.NewLine);
-
-                //}
+              
 
 
                 StreamWriter outputFile = new StreamWriter(path, false, new UTF8Encoding(true));
