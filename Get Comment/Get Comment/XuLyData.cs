@@ -17,6 +17,8 @@ namespace Get_Comment
 
         Regex regSl = new Regex(@"\b[0-9]{1,2}\b");
 
+        Regex regSlChu = new Regex(@"\bmột|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười\b");
+
         Regex regEmail = new Regex(@"[a-z0-9._@+-]+@([a-z0-9]+\.)+[a-z]{2,6}");
 
         Regex regMaHang = new Regex(@"[MH|mh|Mh|mH]+[0-9]{3}");
@@ -39,6 +41,7 @@ namespace Get_Comment
         public Match xulySL(string chuoi)
         {
             Match result = regSl.Match(" " + chuoi + " ");
+            if (!result.Success) result = regSlChu.Match(" " + chuoi + " ");
             return result;
 
         }

@@ -33,7 +33,7 @@ namespace Get_Comment
 
             var resultRequest = new HttpRequest().getCommentFaceBook(link, ref json);
 
-            if (resultRequest == false) { toolStripStatusLabel1.Text = "thất bại"; return; }
+            if (resultRequest == false) { toolStripStatusLabel1.Text = "Lấy comments thất bại"; return; }
             dynamic dataSet = JsonConvert.DeserializeObject<dynamic>(json);
             dynamic array = dataSet.comments.data;
 
@@ -46,7 +46,7 @@ namespace Get_Comment
                 tempCommentData.id = item.id;
                 tempCommentData.comment = item.message;
 
-                string binhluan = Regex.Replace(tempCommentData.comment, "\n", " ");
+                string binhluan = Regex.Replace(tempCommentData.comment,"\n", " ");
 
                 var resultSDT = new XuLyData().xulySDT(binhluan);
                 var resultSL = new XuLyData().xulySL(binhluan);
@@ -74,7 +74,7 @@ namespace Get_Comment
                     tempCommentData.SL = resultSL.ToString();
                     tempCommentData.email = resultEmail.ToString();
                     tempCommentData.sdt = resultSDT.ToString();
-
+                    tempCommentData.MH = resultMH.ToString();
                     ListViewItem item1 = new ListViewItem();
                     item1.Text = i.ToString();
                     i++;
@@ -91,7 +91,7 @@ namespace Get_Comment
 
             }
 
-            toolStripStatusLabel1.Text = "thành công";
+            toolStripStatusLabel1.Text = "Lấy comments thành công";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -101,30 +101,36 @@ namespace Get_Comment
             if (save.ShowDialog() == DialogResult.OK)
             {
                 string path = save.FileName;
-              
 
 
-                StreamWriter outputFile = new StreamWriter(path, false, new UTF8Encoding(true));
-                outputFile.WriteLine("Time" + "," + "ID User" + "," + "Comment" + "," + "Mã Hàng" + "," + "Số Lượng" + "," + "Email" + "," + "Số điện thoại");
-
-                for (int i = 0; i < dataClear.Count; i++)
+                try
                 {
+                    StreamWriter outputFile = new StreamWriter(path, false, new UTF8Encoding(true));
+                    outputFile.WriteLine("Time" + "," + "ID User" + "," + "Comment" + "," + "Mã Hàng" + "," + "Số Lượng" + "," + "Email" + "," + "Số điện thoại");
 
-                    outputFile.WriteLine(dataClear[i].time
-                        + "," + dataClear[i].id
-                        + "," + dataClear[i].comment
-                        + "," + dataClear[i].MH
-                        + "," + dataClear[i].SL
-                        + "," + dataClear[i].email
-                        + "," + dataClear[i].sdt);
+                    for (int i = 0; i < dataClear.Count; i++)
+                    {
+
+                        outputFile.WriteLine(dataClear[i].time
+                            + "," + dataClear[i].id
+                            + "," + dataClear[i].comment
+                            + "," + dataClear[i].MH
+                            + "," + dataClear[i].SL
+                            + "," + dataClear[i].email
+                            + "," + dataClear[i].sdt);
 
 
 
+                    }
+
+
+                    outputFile.Close();
+                    MessageBox.Show("Export thành công", "kết quả", MessageBoxButtons.OK);
                 }
-
-
-                outputFile.Close();
-                MessageBox.Show("Export thành công","kết quả",MessageBoxButtons.OK);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("cố lỗi trong qua trình xuất", "kết quả", MessageBoxButtons.OK , MessageBoxIcon.Error);
+                }
             }
         }
     }
