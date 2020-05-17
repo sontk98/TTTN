@@ -28,12 +28,12 @@ namespace Get_Comment
             string link = "https://graph.facebook.com/" + textBox1.Text + "_" + textBox2.Text + "?fields=comments.limit(10000)&access_token=" + textBox3.Text;
 
             string json="";
-
+            toolStripStatusLabel1.Text = "đang chạy";
           
 
             var resultRequest = new HttpRequest().getCommentFaceBook(link, ref json);
 
-            if (resultRequest == false) return;
+            if (resultRequest == false) { toolStripStatusLabel1.Text = "thất bại"; return; }
             dynamic dataSet = JsonConvert.DeserializeObject<dynamic>(json);
             dynamic array = dataSet.comments.data;
 
@@ -88,7 +88,10 @@ namespace Get_Comment
                     listView1.Items.Add(item1);
                     dataClear.Add(tempCommentData);
                 }
+
             }
+
+            toolStripStatusLabel1.Text = "thành công";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -121,7 +124,7 @@ namespace Get_Comment
 
 
                 outputFile.Close();
-                MessageBox.Show("Export Successfull!");
+                MessageBox.Show("Export thành công","kết quả",MessageBoxButtons.OK);
             }
         }
     }
