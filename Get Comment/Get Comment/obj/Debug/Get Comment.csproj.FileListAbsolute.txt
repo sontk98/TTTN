@@ -33,3 +33,16 @@ C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get 
 C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.csproj.CopyComplete
 C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.exe
 C:\Users\Thanh Tai\Desktop\webPublic\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.pdb
+D:\GitHub\TTTN\Get Comment\Get Comment\bin\Debug\Get Comment.exe.config
+D:\GitHub\TTTN\Get Comment\Get Comment\bin\Debug\Get Comment.exe
+D:\GitHub\TTTN\Get Comment\Get Comment\bin\Debug\Get Comment.pdb
+D:\GitHub\TTTN\Get Comment\Get Comment\bin\Debug\Newtonsoft.Json.dll
+D:\GitHub\TTTN\Get Comment\Get Comment\bin\Debug\Newtonsoft.Json.xml
+D:\GitHub\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.csprojAssemblyReference.cache
+D:\GitHub\TTTN\Get Comment\Get Comment\obj\Debug\Get_Comment.Form1.resources
+D:\GitHub\TTTN\Get Comment\Get Comment\obj\Debug\Get_Comment.Properties.Resources.resources
+D:\GitHub\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.csproj.GenerateResource.cache
+D:\GitHub\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.csproj.CoreCompileInputs.cache
+D:\GitHub\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.csproj.CopyComplete
+D:\GitHub\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.exe
+D:\GitHub\TTTN\Get Comment\Get Comment\obj\Debug\Get Comment.pdb

@@ -28,8 +28,8 @@ namespace Get_Comment
             }
             catch (Exception)
             {
-                string message = "không truy cập được bài viết , xin xem lại id và token";
-                string caption = "error";
+                string message = "Không truy cập được bài viết, xin kiểm tra lại id và token.";
+                string caption = "Error!";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 DialogResult result;
                 result = MessageBox.Show(message, caption, buttons);
