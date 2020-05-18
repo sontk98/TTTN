@@ -11,7 +11,13 @@ namespace Get_Comment
     public class HttpRequest
     {
     
-
+        /// <summary>
+        /// đưa vào url cần get và tham chiếu đến 1 biến để chứa kết quả khi request thành công 
+        /// trả về giá trí true khi request thành công , trả về false khi request thất bại  
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="json"></param>
+        /// <returns></returns>
         public bool getCommentFaceBook(string url,ref string json)
         {
             

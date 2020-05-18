@@ -28,29 +28,12 @@ namespace Get_Comment
             string link = "https://graph.facebook.com/" + textBox1.Text + "_" + textBox2.Text + "?fields=comments.limit(10000)&access_token=" + textBox3.Text;
 
             string json="";
-
-            //try
-            //{
-            //    json = webClient.DownloadString(@link);
-            //}
-            //catch (Exception)
-            //{
-            //    string message = "không truy cập được bài viết , xin xem lại id và token";
-            //    string caption = "error";
-            //    MessageBoxButtons buttons = MessageBoxButtons.OK;
-            //    DialogResult result;
-            //    result = MessageBox.Show(message, caption, buttons);
-            //    if (result == System.Windows.Forms.DialogResult.OK)
-            //    {
-            //        // Closes the parent form.
-
-            //        return;
-            //    }
-            //}
+            toolStripStatusLabel1.Text = "đang chạy";
+          
 
             var resultRequest = new HttpRequest().getCommentFaceBook(link, ref json);
 
-            if (resultRequest == false) return;
+            if (resultRequest == false) { toolStripStatusLabel1.Text = "Lấy comments thất bại"; return; }
             dynamic dataSet = JsonConvert.DeserializeObject<dynamic>(json);
             dynamic array = dataSet.comments.data;
 
@@ -63,23 +46,35 @@ namespace Get_Comment
                 tempCommentData.id = item.id;
                 tempCommentData.comment = item.message;
 
-                string binhluan = Regex.Replace(tempCommentData.comment, "\n", " ");
+                string binhluan = Regex.Replace(tempCommentData.comment,"\n", " ");
 
                 var resultSDT = new XuLyData().xulySDT(binhluan);
                 var resultSL = new XuLyData().xulySL(binhluan);
                 var resultMH = new XuLyData().xulyMaHang(binhluan);
+                //lấy mã hàng vào khách hàng nhập
+                //var resultMH = new XuLyData().XuLyMaHangNangCap(tempCommentData.comment, "mh017");
+
                 var resultEmail = new XuLyData().xulyEmail(binhluan);
+
+
                 //Console.WriteLine(result.ToString());
-                if (resultSDT.Success || resultSL.Success || resultMH.Success || resultEmail.Success)
+                if (resultSDT.Success || resultSL.Success || resultMH.Success  || resultEmail.Success)
                 //if(0==0)
                 {
 
+                    // lấy nhiều mã hàng
+                    //do
+                    //{
+                    //    tempCommentData.MH =tempComentData.MH + resultMH.ToString() + " ";
+                    //    resultMH = resultMH.NextMatch();
+                    //}
+                    //while (resultMH != Match.Empty);
 
-                    tempCommentData.MH = resultMH.ToString();
+
                     tempCommentData.SL = resultSL.ToString();
                     tempCommentData.email = resultEmail.ToString();
                     tempCommentData.sdt = resultSDT.ToString();
-
+                    tempCommentData.MH = resultMH.ToString();
                     ListViewItem item1 = new ListViewItem();
                     item1.Text = i.ToString();
                     i++;
@@ -93,7 +88,10 @@ namespace Get_Comment
                     listView1.Items.Add(item1);
                     dataClear.Add(tempCommentData);
                 }
+
             }
+
+            toolStripStatusLabel1.Text = "Lấy comments thành công";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -103,42 +101,36 @@ namespace Get_Comment
             if (save.ShowDialog() == DialogResult.OK)
             {
                 string path = save.FileName;
-                //File.AppendAllText(path,"Time"+","+"ID User"+","+"Comment" + "," + "Mã Hàng" + "," + "Số Lượng" + "," + "Email" + "," + "Số điện thoại" + Environment.NewLine);
-                //for (int i =0;i<listView1.Items.Count;i++)
-                //{
-                //    File.AppendAllText(path, listView1.Items[i].SubItems[0].Text
-                //        +","+ listView1.Items[i].SubItems[1].Text
-                //        +","+ listView1.Items[i].SubItems[2].Text
-                //        +","+ listView1.Items[i].SubItems[3].Text
-                //        +","+ listView1.Items[i].SubItems[4].Text
-                //        +","+ listView1.Items[i].SubItems[5].Text
-                //        +","+ listView1.Items[i].SubItems[6].Text
-                //        + Environment.NewLine);
-
-                //}
 
 
-                StreamWriter outputFile = new StreamWriter(path, false, new UTF8Encoding(true));
-                outputFile.WriteLine("Time" + "," + "ID User" + "," + "Comment" + "," + "Mã Hàng" + "," + "Số Lượng" + "," + "Email" + "," + "Số điện thoại");
-
-                for (int i = 0; i < dataClear.Count; i++)
+                try
                 {
+                    StreamWriter outputFile = new StreamWriter(path, false, new UTF8Encoding(true));
+                    outputFile.WriteLine("Time" + "," + "ID User" + "," + "Comment" + "," + "Mã Hàng" + "," + "Số Lượng" + "," + "Email" + "," + "Số điện thoại");
 
-                    outputFile.WriteLine(dataClear[i].time
-                        + "," + dataClear[i].id
-                        + "," + dataClear[i].comment
-                        + "," + dataClear[i].MH
-                        + "," + dataClear[i].SL
-                        + "," + dataClear[i].email
-                        + "," + dataClear[i].sdt);
+                    for (int i = 0; i < dataClear.Count; i++)
+                    {
+
+                        outputFile.WriteLine(dataClear[i].time
+                            + "," + dataClear[i].id
+                            + "," + dataClear[i].comment
+                            + "," + dataClear[i].MH
+                            + "," + dataClear[i].SL
+                            + "," + dataClear[i].email
+                            + "," + dataClear[i].sdt);
 
 
 
+                    }
+
+
+                    outputFile.Close();
+                    MessageBox.Show("Export thành công", "kết quả", MessageBoxButtons.OK);
                 }
-
-
-                outputFile.Close();
-                MessageBox.Show("Export Successfull!");
+                catch (Exception ex)
+                {
+                    MessageBox.Show("cố lỗi trong qua trình xuất", "kết quả", MessageBoxButtons.OK , MessageBoxIcon.Error);
+                }
             }
         }
     }
